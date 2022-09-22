@@ -1,0 +1,38 @@
+.TodoItem {
+    margin-left: auto;
+    margin-right: auto;
+
+    border-radius: 5px;
+    box-shadow: 1px 2px 5px 1px #f67280;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.TodoItem + .TodoItem { /* 두 요소 사이의 마진 주기 */
+    margin-top: 15px;
+}
+
+.content {
+    cursor: pointer;
+    flex: 1; 
+    display: flex;
+    align-items: center;
+}
+
+.content svg {
+    font-size: 1.5rem;
+    color: #f67280;
+}
+
+.content .text {
+    margin-left: 0.5rem;
+    flex: 1; /* 해당하는 위치 전체를 텍스트가 차지하도록 만듦 */
+}
+
+.content.checked .text { /* content에 check가 되어있을 경우, 해당 컴포넌트의 text를 가진 요소의 css */
+    color: #6c567b;
+    text-decoration: line-through;
+    cursor: pointer;
+    opacity: 0.6;
+}

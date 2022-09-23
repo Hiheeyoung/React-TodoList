@@ -9,7 +9,20 @@
     margin-right: auto;
 
     padding-bottom: 20px;
-    font-size: 1.5rem;
+    font-size:40px;
     font-weight: bold;
-    color: #6c567b;
+    color: #937DC2;
+}
+
+.undoneTasks {
+    margin-top: 10px;
+    font-size: 18px;
+    color: gray;
+}
+
+.today {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 25px;
+    color: #C689C6;
 }

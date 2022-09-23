@@ -2,6 +2,7 @@ import React from "react";
 import TodoItem from "./TodoItem";
 import './TodoList.css';
 
+// todoitem이 포함된 todolist 툴을 반환하는 컴포넌트
 const TodoList = ({ todos, onCheckToggle, onInsertToggle, onChangeSelectedTodo }) => {  // todos는 할 일 목록이 담긴 배열
     return (
         <div className="TodoList"> 

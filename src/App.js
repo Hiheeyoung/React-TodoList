@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import Template from './components/Template';
 import TodoList from './components/TodoList';
@@ -7,6 +7,7 @@ import TodoInsert from './components/TodoInsert';
 
 let nextId = 4; // 함수 내에 있으면 리렌더링할때마다 초기값으로 돌아가므로 바깥으로 빼줌
 const App = () => {
+
   const [selectedTodo, setSelectedTodo] = useState(null);
   const [insertToggle, setInsertToggle] = useState(false);
 
@@ -28,6 +29,16 @@ const App = () => {
       checked: true
     },
   ]);
+
+
+  useEffect(() => {
+    fetch("/todo")
+      .then(response => response.json())
+      .then(todos => {
+        setTodos(todos);
+      });
+  }, [])
+
 
   // 토글 상태 변경으로 팝업이 뜸
   const onInsertToggle = () => { 
@@ -53,7 +64,7 @@ const App = () => {
       nextId++;
     }
   };
-
+  
   // 체크박스에 체크/언체크 함수
   const onCheckToggle = (id) => {
     setTodos(todos => todos.map(todo => (todo.id === id ? {...todo, checked: !todo.checked} : todo)))
@@ -81,6 +92,7 @@ const App = () => {
     // todo원소는 그대로 갖고 가면서 text만 바꿔주기
   };
 
+
   return (
         <Template todos={todos}> {/* 오늘의 할일을 객체배열의 길이로 표현 */}
            <TodoList todos={ todos } onCheckToggle={onCheckToggle} onInsertToggle={onInsertToggle} 
@@ -91,7 +103,7 @@ const App = () => {
                               selectedTodo={selectedTodo}
                               onInsertToggle={onInsertToggle}
                               onInsertTodo={onInsertTodo}
-                              onRemove={onRemove} onUpdate={onUpdate} />} {/* insertToggle이 true인 경우에만 TodoInsert 컴포넌트 사용 */}
+                              onRemove={onRemove} onUpdate={onUpdate} />} {/* insertToggle이 true인 경우에만 TodoInsert 컴포넌트 사용 */}  
         </Template>
   )
 }
